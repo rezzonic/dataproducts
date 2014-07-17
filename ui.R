@@ -3,20 +3,6 @@ library(shiny)
 shinyUI(pageWithSidebar(
   headerPanel("How would your computer rank among the fastest computers in the world?"),
   sidebarPanel(
-    textInput('freq', 'Frequency [GHz]',value = 2.2),
-    textInput('cores', 'Number of cores', value=2),
-    selectInput("arch", "Architecture:",
-                c("Before Sandy Bridge" = "4",
-                  "Sandy Bridge or better" = "8")),
-    sliderInput('eff', 'Estimated efficiency [%]',value = 80, min = 50, max = 100, step = 1)
-  ),
-  mainPanel(
-    p("Moore's law implies that computing power doubles every 18 months.
-      It is then reasonable to think that the computer you're using now has the power of
-      a supercomputer a couple of years ago."),
-    p("The goal of this application is to show how your computer would have 
-      ranked since the nineties."),
-    h2("Inputs"),
     p(HTML("<b>Frequency</b>. This is the frequency of your processor, in GHz. 
            Check <a href=\"http://www.wikihow.com/Check-CPU-Speed\">here</a> for a howto.")),
     p(HTML("<b>Number of cores</b>. The number of cores of your machine")),
@@ -24,8 +10,21 @@ shinyUI(pageWithSidebar(
 Bridge</a> was available 2011. When looking up the frequency, you can see the CPU model.
            This <a href=\"http://ark.intel.com/\">Intel website</a> lets you look it up. If
 <i>Instruction Set Extension</i> contains AVX, then it's Sandy Bridge or newer.")),
-   p(HTML("<b>Efficiency</b>. Just take a wild guess on this one! Values between 80 and 95 are
+    p(HTML("<b>Efficiency</b>. Just take a wild guess on this one! Values between 80 and 95 are
           within reasonable reach.")),
+    textInput('freq', 'Frequency [GHz]',value = 1.4),
+    textInput('cores', 'Number of cores', value=2),
+    selectInput("arch", "Architecture:",
+                c("Before Sandy Bridge" = "4",
+                  "Sandy Bridge or better" = "8")),
+    sliderInput('eff', 'Estimated efficiency [%]',value = 90, min = 50, max = 100, step = 1)
+  ),
+  mainPanel(
+    p("Moore's law implies that computing power doubles every 18 months.
+      It is then reasonable to think that the computer you're using now has the power of
+      a supercomputer a couple of years ago."),
+    p("The goal of this application is to show how your computer would have 
+      ranked since the nineties."),
    h2("Results"),
    p("Peak performance of your computer in GFLOPs"),
    verbatimTextOutput("yourflops"),

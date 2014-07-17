@@ -1,5 +1,3 @@
-require(rCharts)
-
 top500 <- read.table("top500-summary.txt",header=TRUE)
 ddate<-as.Date(paste(as.character(top500$mdate),"-01",sep=""))
 dates<- as.Date(paste(levels(top500$mdate),"-01",sep=""))
